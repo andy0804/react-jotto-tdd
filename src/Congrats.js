@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Congrats.css";
 const Congrats = ({ success }) => {
   return (
-    <div data-test="component-congrats">
+    <div data-test="component-congrats" className="alert alert-success">
       {success && (
         <div id="congrats-message">
           `Congratulations ! You have correctly guessed the word`
