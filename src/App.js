@@ -6,6 +6,7 @@ import React,{useEffect } from "react";
 import { getSecretWord } from "./actions";
 
 function App() {
+  // this is the context version of the app
   useEffect(()=>{
     getSecretWord()
   },[])
