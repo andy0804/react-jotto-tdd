@@ -5,6 +5,7 @@ import Input from "./Input";
 import React,{useEffect } from "react";
 import { getSecretWord } from "./actions";
 
+//REDUX version of app
 function App() {
   useEffect(()=>{
     getSecretWord()
