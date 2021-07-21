@@ -2,9 +2,13 @@ import "./App.css";
 import Congrats from "./Congrats";
 import GuessedWords from "./GuessedWords";
 import Input from "./Input";
-import React from "react";
+import React,{useEffect } from "react";
+import { getSecretWord } from "./actions";
 
 function App() {
+  useEffect(()=>{
+    getSecretWord()
+  },[])
   // const [success, setSuccess] = React.useState(false);
 
   // const handleWhenSuccess = (param) => {
