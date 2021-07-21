@@ -10,13 +10,19 @@ function App() {
   // const handleWhenSuccess = (param) => {
   //   setSuccess(param);
   // };
+  const state = {
+    success: false,
+    secretWord:'party',
+    guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
+  }
+  const {success ,guessedWords,secretWord} = state;
   return (
-    <div className="container">
+    <div data-test="component-app" className="container">
       <h1>Jotto</h1>
-      <Congrats success={false} />
-      <Input success={false} secretWord="party" />
+      <Congrats success={success} />
+      <Input success={success} secretWord={secretWord} />
       <GuessedWords
-        guessedWords={[{ guessedWord: "train", letterMatchCount: 3 }]}
+        guessedWords={guessedWords }
       />
     </div>
   );
