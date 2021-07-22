@@ -1,5 +1,5 @@
 import moxios from "moxios";
-import {getSecretWord   } from "./index"
+import {getSecretWord ,correctGuess, actionTypes  } from "./index"
 describe('getSecretWord',()=>{
     beforeEach(()=>{
         moxios.install()
@@ -19,5 +19,15 @@ describe('getSecretWord',()=>{
         .then((secretWord)=>{
            expect(secretWord).toBe('party')
         })
+    })
+
+})
+
+describe('correctGuess',()=>{
+
+    test(' returns an action with type correctGuess',()=>{
+        const action = correctGuess();
+        expect(action).toStrictEqual({type:actionTypes.CORRECT_GUESS})
+
     })
 })
