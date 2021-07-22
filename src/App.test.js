@@ -1,17 +1,20 @@
 import {mount} from 'enzyme'
-import { findByTestAttr} from "../test/testUtils"
+import { findByTestAttr,storeFactory} from "../test/testUtils"
 import App from "./App"
+import {Provider} from "react-redux"
 
 //activate global mock to make sure getSecretWord dossn't make network call
 jest.mock('./actions');
 import { getSecretWord as mockGetSecretWord } from './actions';
 const setup = () => {
-    return mount (<App/>)
+    const store = storeFactory();
+
+    return mount (<Provider store={store}><App/></Provider>)
 }
 
 test('renders without error',()=>{
 
-const wrapper = setup();
+const wrapper = setup({success:false});
 const appComponent =  findByTestAttr( wrapper ,'component-app')
 expect(appComponent).toHaveLength(1);
 })

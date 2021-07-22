@@ -23,11 +23,3 @@ describe('getSecretWord',()=>{
 
 })
 
-describe('correctGuess',()=>{
-
-    test(' returns an action with type correctGuess',()=>{
-        const action = correctGuess();
-        expect(action).toStrictEqual({type:actionTypes.CORRECT_GUESS})
-
-    })
-})
