@@ -84,3 +84,28 @@ describe('some words guessed', () => {
 })
 
 
+describe('user resets game', () => {
+    let wrapper;
+    beforeEach(() => {
+        wrapper = setup({
+            secretWord: 'party', success: false,
+            guessedWords: [{ guessedWord: "agile", letterMatchCount: 1 },
+            ]
+        })
+     //add value to the input box
+      const inputBox = findByTestAttr(wrapper, 'input-box');
+      inputBox.simulate('change', { target: { value: 'party' } })
+  
+      // simulate a click
+      const submitButton = findByTestAttr(wrapper, 'submit-button');
+      submitButton.simulate('click', { preventDefault() { } })
+
+    })
+          //expect reset button to be shown
+          test('expect reset button to be shown when game is over', () => {
+            const resetButton = findByTestAttr(wrapper, 'reset-button');
+            expect(resetButton).toHaveLength(1);
+        })
+})
+
+

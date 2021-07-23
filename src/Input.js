@@ -33,6 +33,7 @@ function Input({ secretWord }) {
           onClick={(evt) => {
             evt.preventDefault();
             dispatch(guessWord(currentGuess));
+            setCurrentGuess("");
           }}
           className="btn btn-primary mb-2"
         >

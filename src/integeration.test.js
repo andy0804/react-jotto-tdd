@@ -1,5 +1,5 @@
 import { storeFactory } from "../test/testUtils";
-import {guessWord} from "./actions";
+import {guessWord, resetJotto} from "./actions";
 
 describe('guess word action',()=>{
     const secretWord = 'party';
@@ -34,6 +34,18 @@ describe('guess word action',()=>{
                     guessedWord:secretWord,
                     letterMatchCount:5
                 }]
+            }  
+            expect(newState).toEqual(expectedState);
+
+            
+        })
+        test('updates correctly for reset game',()=>{
+            store.dispatch(resetJotto()); 
+            const newState = store.getState(); 
+            const expectedState = {
+                secretWord,
+                success:false,
+                guessedWords:[]
             }  
             expect(newState).toEqual(expectedState);
 
