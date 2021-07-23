@@ -1,5 +1,5 @@
 import { storeFactory } from "../test/testUtils";
-import {guessWord, resetJotto} from "./actions";
+import {gaveUp, guessWord, resetJotto} from "./actions";
 
 describe('guess word action',()=>{
     const secretWord = 'party';
@@ -15,6 +15,7 @@ describe('guess word action',()=>{
             const newState = store.getState(); 
             const expectedState = {
                 ...initialState,
+                gaveUp:false,
                 success:false,
                 guessedWords:[{
                     guessedWord:unsuccessfulWord,
@@ -29,6 +30,7 @@ describe('guess word action',()=>{
             const newState = store.getState(); 
             const expectedState = {
                 secretWord,
+                gaveUp:false,
                 success:true,
                 guessedWords:[{
                     guessedWord:secretWord,
@@ -44,6 +46,7 @@ describe('guess word action',()=>{
             const newState = store.getState(); 
             const expectedState = {
                 secretWord,
+                gaveUp:false,
                 success:false,
                 guessedWords:[]
             }  
@@ -64,6 +67,7 @@ describe('guess word action',()=>{
             const newState = store.getState(); 
             const expectedState = {
                    secretWord,
+                   gaveUp:false,
                    success:false,
                 guessedWords:[...guessedWords,{
                     guessedWord:unsuccessfulWord,
@@ -80,10 +84,25 @@ describe('guess word action',()=>{
             const expectedState = {
                    secretWord,
                    success:true,
+                   gaveUp:false,
                 guessedWords:[...guessedWords,{
                     guessedWord:secretWord,
                     letterMatchCount:5
                 }]
+            }  
+            expect(newState).toEqual(expectedState);
+
+
+        })
+
+        test('updats correctly when User Gives up',()=>{
+            store.dispatch(gaveUp()); 
+            const newState = store.getState(); 
+            const expectedState = {
+                   secretWord,
+                   success:false,
+                   gaveUp:true, 
+                   guessedWords:[...guessedWords]
             }  
             expect(newState).toEqual(expectedState);
 
