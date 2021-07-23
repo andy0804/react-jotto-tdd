@@ -2,25 +2,22 @@ import "./App.css";
 import Congrats from "./Congrats";
 import GuessedWords from "./GuessedWords";
 import Input from "./Input";
+import {useSelector,useDispatch} from "react-redux";
 import React,{useEffect } from "react";
 import { getSecretWord } from "./actions";
 
 //REDUX version of app
 function App() {
+  const success = useSelector(state=>state.success);
+  const guessedWords = useSelector(state=>state.guessedWords);
+  const secretWord = useSelector((state) => state.secretWord);
+ // so that we can dispatch an action
+ const dispatch = useDispatch();
   useEffect(()=>{
-    getSecretWord()
+    dispatch(getSecretWord());
   },[])
-  // const [success, setSuccess] = React.useState(false);
 
-  // const handleWhenSuccess = (param) => {
-  //   setSuccess(param);
-  // };
-  const state = {
-    success: false,
-    secretWord:'party',
-    guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
-  }
-  const {success ,guessedWords,secretWord} = state;
+ 
   return (
     <div data-test="component-app" className="container">
       <h1>Jotto</h1>

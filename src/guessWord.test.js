@@ -4,9 +4,10 @@ import {Provider} from "react-redux"
 
 import App from "./App"
 import { findByTestAttr, storeFactory } from "../test/testUtils"
-
-const setup = (state = {}) => {
-    const store = storeFactory();
+//activate global mock to make sure getSecretWord dossn't make network call
+jest.mock('./actions');
+const setup = (initialState = {}) => {
+    const store = storeFactory(initialState);
     const wrapper = mount(<Provider store={store}><App /></Provider>);
     // TODO: apply state
 
@@ -24,7 +25,7 @@ const setup = (state = {}) => {
 
 }
 
-describe.only('no words guessed', () => {
+describe('no words guessed', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = setup({ secretWord: 'party', success: false, guessedWords: [] })
@@ -36,7 +37,7 @@ describe.only('no words guessed', () => {
     })
 })
 
-describe.skip('some words guessed', () => {
+describe('some words guessed', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = setup({
@@ -52,7 +53,7 @@ describe.skip('some words guessed', () => {
     })
 })
 
-describe.skip('some words guessed', () => {
+describe('some words guessed', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = setup({
