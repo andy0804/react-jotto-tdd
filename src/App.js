@@ -5,7 +5,7 @@ import Input from "./Input";
 import {useSelector,useDispatch} from "react-redux";
 import React,{useEffect } from "react";
 import { getSecretWord } from "./actions";
-
+import { TotalGuesses } from "./TotalGuesses";
 //REDUX version of app
 function App() {
   const success = useSelector(state=>state.success);
@@ -26,6 +26,7 @@ function App() {
       <GuessedWords
         guessedWords={guessedWords }
       />
+      <TotalGuesses guesses={guessedWords.length} />
     </div>
   );
 }

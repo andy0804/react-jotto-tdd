@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findByTestAttr, checkProps } from "../test/testUtils";
+import { findByTestAttr, checkProps, findByClassName } from "../test/testUtils";
 import GuessedWords from "./GuessedWords";
 const defaultProps = {
   guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }],
@@ -51,4 +51,13 @@ describe("When words are guessed ", () => {
     const guessedWordsNode = findByTestAttr(wrapper, "guessed-word");
     expect(guessedWordsNode.length).toBe(guessedWords.length);
   });
+  test("displays column guess number", () => {
+    const guessedWordsNode = findByTestAttr(wrapper, "guessed-number-col");
+    expect(guessedWordsNode.length).toBe(1); 
+  });
+  test("displays numbers in the guess number column", () => {
+    const guessWordColumn = findByTestAttr(wrapper, "guess-number");
+    expect(guessWordColumn.map((node) => node.text())[0]).not.toBeNaN();
+  });
 });
+ 

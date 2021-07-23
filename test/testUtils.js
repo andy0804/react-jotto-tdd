@@ -12,6 +12,9 @@ export const findByTestAttr = (wrapper, val) => {
 export const findByTestID = (wrapper, val) => {
   return wrapper.find(`#${val}`);
 };
+export const findByClassName = (wrapper,val) => {
+  return wrapper.find(`${val}`);
+}
 
 export const checkProps = (component, conformingProps) => {
   const propError = checkPropTypes(
