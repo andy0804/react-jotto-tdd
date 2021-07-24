@@ -1,13 +1,31 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import Congrats from "./Congrats";
 import { findByTestAttr, findByTestID, checkProps } from "../test/testUtils";
+import { langContext } from "./context/languageContext";
+import { languageStrings } from "./helpers/strings";
 const defaultProps = { success: false };
-const setup = (props = {}) => {
-  const setupProps = { ...defaultProps, ...props };
-  return shallow(<Congrats {...setupProps} />);
-};
+// const setup = (props = {}) => {
+//   const setupProps = { ...defaultProps, ...props };
+//   return shallow(<Congrats {...setupProps} />);
+// };
+const setup = ({success,language})=> {
+   language  = language || 'en';
+   success = success || false;
+  return mount(<langContext.Provider value={language}><Congrats success={success} /></langContext.Provider>)
+}
 
+describe('Language Picker testing',()=>{
+  test('correctly renders congrats in english',()=>{
+    const wrapper = setup({success:true});
+    expect(wrapper.text()).toBe(languageStrings.en.congrats)  
+
+  })
+  test('correctly renders congrats in emoji',()=>{
+    const wrapper = setup({success:true,language:'emoji'});
+    expect(wrapper.text()).toBe(languageStrings.emoji.congrats)
+  })
+})
 test("renders without errors", () => {
   const wrapper = setup({ success: false });
   const congratsComponent = findByTestAttr(wrapper, "component-congrats");

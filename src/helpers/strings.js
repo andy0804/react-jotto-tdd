@@ -1,4 +1,4 @@
-const languageStrings = {
+export const languageStrings = {
     en: {
      congrats: 'Congratulations! You guessed the word!',
      submit: 'Submit',
@@ -22,6 +22,7 @@ const languageStrings = {
   function getStringByLanguage(languageCode,key,strings=languageStrings){
       if( !strings[languageCode] || !strings[languageCode][key]){
           //fallback to english
+          console.warn('Key does not exist')
           return strings.en[key];
       }
 

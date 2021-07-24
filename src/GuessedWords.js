@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { langContext } from "./context/languageContext";
+import { TextContext } from "./context/appContext";
 
 const GuessedWords = (props) => {
+  // const languageContext = useContext(langContext)
+  const textContext = useContext(TextContext);
+  // const {setData,data} = textContext;
   let contents;
   if (props.guessedWords.length === 0) {
     contents = (
