@@ -1,31 +1,9 @@
-/* .container {
-  text-align: center;
-  align-items: center;
+.container-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: column;
-} */
-/* 
-table {
-  margin: 0;
-  padding: 0;
-  border-spacing: 0;
+  justify-content: center;
 }
-table,
-th,
-td {
-  width: 350px;
-}
-th {
-  border-bottom: 1px solid grey;
-}
-
-th,
-td {
-  text-align: left;
-  padding-left: 3px;
-}
-
-td:first-child,
-th:first-child {
-  border-right: 1px solid grey;
-} */
