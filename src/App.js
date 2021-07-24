@@ -2,25 +2,22 @@ import "./App.css";
 import Congrats from "./Congrats";
 import GuessedWords from "./GuessedWords";
 import Input from "./Input";
-import React,{useEffect } from "react";
+import React,{useEffect ,useState} from "react";
 import { getSecretWord } from "./actions";
 
 function App() {
+
+  const [ secretWord,setSecretWord] = useState('')
   // this is the context version of the app
   useEffect(()=>{
-    getSecretWord()
+    getSecretWord(setSecretWord);
   },[])
-  // const [success, setSuccess] = React.useState(false);
 
-  // const handleWhenSuccess = (param) => {
-  //   setSuccess(param);
-  // };
   const state = {
     success: false,
-    secretWord:'party',
     guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
   }
-  const {success ,guessedWords,secretWord} = state;
+  const {success ,guessedWords} = state;
   return (
     <div data-test="component-app" className="container">
       <h1>Jotto</h1>
