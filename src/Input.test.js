@@ -1,19 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow ,mount} from "enzyme";
 import Input from "./Input";
 import { findByTestAttr, checkProps } from "../test/testUtils";
+import { langContext } from "./context/languageContext";
+import { languageStrings } from "./helpers/strings";
 
-/**
- * mock entire module
- * const mockCurrentGuess = jest.fn();
- * jest.mock('react',()=>({
- * ...jest.requireActual('react'),
- *  useState :(initialState) => [initialState ,mockCurrentGuess]
- * }))
- */
-const defaultProps = { secretWord: "party" };
-const setup = (success = false, secretWord = "party") => {
-  return shallow(<Input success={success} secretWord={secretWord} />);
+const setup = ({language ,secretWord ,success}) => {
+  language  = language || 'en';
+  success = success || false;
+  secretWord = secretWord||  "party"
+  return mount(<langContext.Provider value={language}><Input success={success} secretWord={secretWord} /></langContext.Provider>);
 };
 
 test("it does not throw error with props passed", () => {
@@ -23,7 +19,7 @@ describe("render", () => {
   describe("success is true", () => {
     let wrapper;
     beforeEach(() => {
-      wrapper = setup(true);
+      wrapper = setup({success:true});
     });
     test("input box renders without error", () => {
       const inputComponent = findByTestAttr(wrapper, "component-input");
@@ -42,7 +38,7 @@ describe("render", () => {
   describe("success is false", () => {
     let wrapper;
     beforeEach(() => {
-      wrapper = setup(false);
+      wrapper = setup({});
     });
     test("input box renders without error", () => {
       const inputComponent = findByTestAttr(wrapper, "component-input");
@@ -67,7 +63,7 @@ describe("state controlled input field", () => {
     mockSetCurrentGuess.mockClear();
     orginalUseState = React.useState;
     React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
-    wrapper = setup();
+    wrapper = setup({});
   });
   afterEach(() => {
     React.useState = orginalUseState;
@@ -84,3 +80,16 @@ describe("state controlled input field", () => {
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("");
   });
 });
+describe('Language Testing for Input Component',()=>{
+  test('correctly renders submit in english',()=>{
+    const wrapper = setup({success:false,language:'en'});
+    const submitBtn = findByTestAttr(wrapper, "submit-button");
+    expect(submitBtn.text()).toBe(languageStrings.en.submit)  
+
+  })
+  test('correctly renders submit in emoji',()=>{
+    const wrapper = setup({success:false,language:'emoji'});
+    const submitBtn = findByTestAttr(wrapper, "submit-button");
+    expect(submitBtn.text()).toBe(languageStrings.emoji.submit)
+  })
+})

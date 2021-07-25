@@ -22,7 +22,7 @@ export const languageStrings = {
   function getStringByLanguage(languageCode,key,strings=languageStrings){
       if( !strings[languageCode] || !strings[languageCode][key]){
           //fallback to english
-          console.warn('Key does not exist')
+          console.warn('Key does not exist' , key)
           return strings.en[key];
       }
 

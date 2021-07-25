@@ -13,7 +13,7 @@ function App() {
    
   const [state,dispatch] =React.useReducer(
       appReducer,
-      { secretWord: null }
+      { secretWord: null ,language:'en' }
     )
 
   const setSecretWord = (secretWord) => {
@@ -32,7 +32,7 @@ function App() {
     guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
   }
   const {success ,guessedWords} = appState;
-
+ console.log('STATE',state)
   if(!state.secretWord) {
     return (
       <div className="container container-spinner" data-test="spinner">
