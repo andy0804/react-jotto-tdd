@@ -6,8 +6,6 @@ import stringsModule from "./helpers/strings"
 const Input = ({ secretWord, success }) => {
   const [currentGuess, setCurrentGuess] = React.useState("");
   const language = useContext(langContext);
-
-   console.log('lANGUAGE' ,language)
   if (success) {
     return <div data-test="component-input"></div>;
   }

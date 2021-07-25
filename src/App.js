@@ -22,7 +22,6 @@ function App() {
   const setLanguage = (language) => {
     dispatch({type:'setLanguage',payload:language})
   }
-  // this is the context version of the app
   useEffect(()=>{
     getSecretWord(setSecretWord);
   },[])
@@ -32,7 +31,6 @@ function App() {
     guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
   }
   const {success ,guessedWords} = appState;
- console.log('STATE',state)
   if(!state.secretWord) {
     return (
       <div className="container container-spinner" data-test="spinner">

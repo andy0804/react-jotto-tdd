@@ -5,8 +5,7 @@ import { langContext } from "./context/languageContext";
 import stringsModule from "./helpers/strings"
 const Congrats = ({ success }) => {
   const language = useContext(langContext);
-  console.log('lANGUAGE' ,language)
-
+  
   return (
     <div data-test="component-congrats">
       {success && (

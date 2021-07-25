@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { findByTestAttr, checkProps } from "../test/testUtils";
 import GuessedWords from "./GuessedWords";
+import { languageStrings } from "./helpers/strings";
 const defaultProps = {
   guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }],
 };
@@ -52,3 +53,22 @@ describe("When words are guessed ", () => {
     expect(guessedWordsNode.length).toBe(guessedWords.length);
   });
 });
+
+describe('Context Testing',()=>{
+
+  test('If instructions are loaded correctly in English',()=>{
+    const mockUseContext = jest.fn().mockReturnValue('en')
+    React.useContext = mockUseContext;
+    const wrapper =  setup({guessedWords:[]});
+    const guessInstructions = findByTestAttr(wrapper,'guess-instructions');
+    expect(guessInstructions.text()).toBe(languageStrings.en.guessPrompt)
+  })
+  test('If instructions are loaded correctly in Emoji',()=>{
+    const mockUseContext = jest.fn().mockReturnValue('emoji');
+    React.useContext = mockUseContext;
+    const wrapper = setup({guessedWords:[]});
+    const guessInstructions = findByTestAttr(wrapper, "guess-instructions");
+    expect(guessInstructions.text()).toBe(languageStrings.emoji.guessPrompt);
+  })
+
+})
