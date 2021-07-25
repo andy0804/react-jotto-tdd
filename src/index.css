@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.langStyle {
+  border: 1px solid silver;
+  padding: 2px;
+  margin: 2px;
+  cursor: pointer;
+  outline: blue;
+}
+.langStyle:hover {
+  background-color: aqua;
+}
